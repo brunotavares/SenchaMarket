@@ -1,6 +1,6 @@
 # Sencha Market
 
-My extensions, plugins and other submitted to Sencha Market for Ext JS and Touch frameworks.
+My extensions and plugins submitted to [Sencha Market](https://market.sencha.com) for Ext JS and Touch frameworks.
 
 ## License
 

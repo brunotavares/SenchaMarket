@@ -1,0 +1,149 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	    <title>Example Ext.ux.form.field.Money</title>
+			
+		<link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext-4.1.1-gpl/resources/css/ext-all.css" />
+	    <script type="text/javascript" src="http://cdn.sencha.com/ext-4.1.1-gpl/ext-all-debug.js"></script>	
+		<script type="text/javascript" src="form/field/Money.js"></script>
+		<script type="text/javascript">
+		
+			Ext.onReady(function()
+			{
+				var testTpl = new Ext.Template(
+					'<table style="font-size:11px;" width="100%">',
+						'<tr>',
+							'<td align="center" colspan="2">Money 1</td>',
+							'<td align="center" colspan="2">Money 2</td>',
+						'<tr>',
+						'</tr>',
+							'<td>getValue()</td><td>{money1_getValue}</td>',
+							'<td>getValue()</td><td>{money2_getValue}</td>',
+						'<tr>',
+						'</tr>',	
+							'<td>getRawValue()</td><td>{money1_getRawValue}</td>',
+							'<td>getRawValue()</td><td>{money2_getRawValue}</td>',
+						'<tr>',
+						'</tr>',	
+							'<td>hiddenField.value</td><td>{money1_hidden}</td>',
+							'<td>hiddenField.value</td><td>{money2_hidden}</td>',
+						'</tr>',
+					'</table>'
+				);
+
+				var updateTests = function()
+				{
+					var money1 = Ext.getCmp("money1"),
+						money2 = Ext.getCmp("money2");
+
+					testTpl.overwrite('ct-tests',{
+						money1_getValue		: money1.getValue(),
+						money2_getValue		: money2.getValue(),
+						money1_getRawValue	: money1.getRawValue(),
+						money2_getRawValue	: money2.getRawValue(),
+						money1_hidden		: money1.hiddenField ? money1.hiddenField.value : 'not rendered',
+						money2_hidden		: money2.hiddenField ? money2.hiddenField.value : 'not rendered' 
+					});
+				};
+
+				var form = new Ext.form.FormPanel({
+					frame		: true,
+					width		: 500,
+					height		: 300,
+					renderTo	: Ext.getBody(),
+					buttonAlign	: 'center',
+					defaults	: {
+						width		: 400,
+						labelWidth	: 270
+					},
+					items		: [{
+						xtype			: 'moneyfield',
+						id				: 'money1',
+						hiddenName		: 'money_hidden_1',
+						fieldLabel		: 'Precision 2, decimal separator ",", maxLength 6',
+						decimalSeparator: ',',
+						decimalPrecision: 2,
+						maxLength		: 6,
+						enableKeyEvents	: true,
+						listeners		: {
+							keypress	: {
+								delay	: 250,
+								fn		: updateTests
+							},
+							blur	: updateTests,
+							focus	: updateTests
+						}
+					},{
+						xtype			: 'moneyfield',
+						id				: 'money2',
+						hiddenName		: 'money_hidden_2',
+						fieldLabel		: 'Precision 4, decimal separator ".", maxLength 10',
+						decimalSeparator: '.',
+						decimalPrecision: 4,
+						maxLength		: 10,
+						enableKeyEvents	: true,
+						listeners		: {
+							keypress	: {
+								delay	: 250,
+								fn		: updateTests
+							},
+							blur: updateTests,
+							focus: updateTests
+						}
+					},{
+						xtype	: 'box',
+						html	: 'Tests',
+						style	: 'margin-top:10px; border-bottom:1px solid #333;',
+						anchor	: '0'
+					},{
+						xtype	: 'container',
+						id		: 'ct-tests',
+						anchor	: '0'
+					},{
+						xtype	: 'container',
+						anchor	: '0',
+						style	: 'margin-top:10px;',
+						items	: [{
+							xtype	: 'label',
+							text	: 'setValue(',
+							style	: 'float:left;'
+						},{
+							xtype		: 'textfield',
+							id			: 'txtSetValue',
+							style		: 'float:left;',
+							width		: 80
+						},{
+							xtype	: 'label',
+							text	: '); ',
+							style	: 'float:left;'
+						},{
+							xtype			: 'button',
+							text			: 'setValue test',
+							selectOnFocus	: true,
+							handler			: function()
+							{
+								var value;
+
+								try{
+									value = eval(Ext.getCmp('txtSetValue').getValue());
+								}catch(e){
+									Ext.Msg.alert('Invalid code', e);
+									return false;
+								}
+
+								Ext.getCmp("money1").setValue(value);
+								Ext.getCmp("money2").setValue(value);
+								updateTests();
+							}
+						}]
+					}]
+				});
+
+				updateTests();
+			});
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
