@@ -57,40 +57,6 @@
 						labelWidth	: 270
 					},
 					items		: [{
-						xtype			: 'moneyfield',
-						id				: 'money1',
-						hiddenName		: 'money_hidden_1',
-						fieldLabel		: 'Precision 2, decimal separator ",", maxLength 6',
-						decimalSeparator: ',',
-						decimalPrecision: 2,
-						maxLength		: 6,
-						enableKeyEvents	: true,
-						listeners		: {
-							keypress	: {
-								delay	: 250,
-								fn		: updateTests
-							},
-							blur	: updateTests,
-							focus	: updateTests
-						}
-					},{
-						xtype			: 'moneyfield',
-						id				: 'money2',
-						hiddenName		: 'money_hidden_2',
-						fieldLabel		: 'Precision 4, decimal separator ".", maxLength 10',
-						decimalSeparator: '.',
-						decimalPrecision: 4,
-						maxLength		: 10,
-						enableKeyEvents	: true,
-						listeners		: {
-							keypress	: {
-								delay	: 250,
-								fn		: updateTests
-							},
-							blur: updateTests,
-							focus: updateTests
-						}
-					},{
 						xtype	: 'box',
 						html	: 'Tests',
 						style	: 'margin-top:10px; border-bottom:1px solid #333;',
@@ -136,6 +102,40 @@
 								updateTests();
 							}
 						}]
+					},{
+						xtype			: 'moneyfield',
+						id				: 'money1',
+						hiddenName		: 'money_hidden_1',
+						fieldLabel		: 'Precision 2, decimal separator ",", maxLength 6',
+						decimalSeparator: ',',
+						decimalPrecision: 2,
+						maxLength		: 6,
+						enableKeyEvents	: true,
+						listeners		: {
+							keypress	: {
+								delay	: 250,
+								fn		: updateTests
+							},
+							blur	: updateTests,
+							focus	: updateTests
+						}
+					},{
+						xtype			: 'moneyfield',
+						id				: 'money2',
+						hiddenName		: 'money_hidden_2',
+						fieldLabel		: 'Precision 4, decimal separator ".", maxLength 10',
+						decimalSeparator: '.',
+						decimalPrecision: 4,
+						maxLength		: 10,
+						enableKeyEvents	: true,
+						listeners		: {
+							keypress	: {
+								delay	: 250,
+								fn		: updateTests
+							},
+							blur: updateTests,
+							focus: updateTests
+						}
 					}]
 				});
 

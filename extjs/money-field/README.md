@@ -1,9 +1,9 @@
 # Ext.ux.form.field.Money
 
-**Check live demo here:**
+**[Check live demo here](http://brunotavares.github.com/SenchaMarket/extjs/money-field/test.html)**
 
-Most of numeric fields that promise Money formatting have such strict rules that using them is a pain for the user, but this
-one is pretty simple. It just formats the value when the user leaves the field, and provide a consistent API for developers.
+Most of numeric fields that promise Money formatting have such strict rules that using them is a pain for the user...but this
+one is pretty simple! It just formats the value when the user leaves the field, and provide a consistent API for developers.
 
 It provides:
 
@@ -12,7 +12,7 @@ a second typing of the same character.
 
 * Formats number adding decimal and centesimal separators.
 
-!https://raw.github.com/brunotavares/SenchaMarket/master/extjs/money-field/printscreen.jpg!
+![MoneyField Demo](https://raw.github.com/brunotavares/SenchaMarket/master/extjs/money-field/printscreen.jpg)
 
 ## Getting Started
 
@@ -51,8 +51,9 @@ The config maxLength is valid for the count of numbers present on the integer pa
 The decimal part is controlled by the decimalPrecision, and separators are just decoration.
 
 E.g.:
- - maxLength 6 enforces a number not bigger than 9,999,999.
- - maxLength 2 validates 12.2565 (4 as decimalPrecision) but not 125.2 (1 as decimalPrecision).
+
+ * maxLength 6 enforces a number not bigger than 9,999,999.
+ * maxLength 2 validates 12.2565 (4 as decimalPrecision) but not 125.2 (1 as decimalPrecision).
 
 ### setValue(number/string)
 
@@ -64,7 +65,10 @@ Set value will always work passing a number or a string respecting the format '2
 getValue is the method developers use to handle form values, making advanced validations, mixing and transforming, etc... So getValue()
 here always returns a Number instance, nothing but a Number.
 
-Developers can customize the decimalSeparator, centesimalSeparator and the maxLength. The max length is based on number of
-numeric characters (e.g. 7 for 1,000,000).        
+### hiddenName
+
+This would be the name that you'll use for submitting the value to the backend. Since the money field itself has a pretty formatted 
+value for the user, we need another field, a hidden one, with the normalized database version for the numeric value.
+
 
 
