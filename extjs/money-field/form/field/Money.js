@@ -151,7 +151,9 @@ Ext.define('Ext.ux.form.field.Money', {
 		
 		me.callParent(arguments);
 		
-		me.el.applyStyles('text-align:right;');
+		me.inputEl.setStyle({
+            		textAlign: 'right'
+        	});
 		
 		me.hiddenName = me.hiddenName||me.name; 
 		
